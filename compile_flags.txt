@@ -1,4 +1,0 @@
--I
-C:\Users\muril\scoop\apps\glfw\current\include
--I
-C:\Users\muril\scoop\apps\vulkan\current\include
