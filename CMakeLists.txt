@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28.0)
+cmake_minimum_required(VERSION 3.22.0)
 
 project(VulkanApp)
 
@@ -9,17 +9,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Generate the include paths
 set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+
 # Find Vulkan package
 find_package(Vulkan REQUIRED)
+find_package(GLFW3 REQUIRED)
 
 # Add include directories
-include_directories(${Vulkan_INCLUDE_DIRS} "$ENV{GLFW_ROOT}/include")
+include_directories(${Vulkan_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIR})
 
 # Define the executable
 add_executable(${PROJECT_NAME} main.cpp)
 
 # Link with Vulkan library
-target_link_libraries(${PROJECT_NAME} ${Vulkan_LIBRARIES} "$ENV{GLFW_ROOT}/lib-vc2022/glfw3.lib")
+target_link_libraries(${PROJECT_NAME} ${Vulkan_LIBRARIES} ${GLFW3_LIBRARY})
 
 # If using Visual Studio, set the debugger working directory
 if(MSVC)
